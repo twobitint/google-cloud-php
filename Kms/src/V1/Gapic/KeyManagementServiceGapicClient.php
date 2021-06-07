@@ -164,16 +164,25 @@ class KeyManagementServiceGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' => __DIR__ . '/../resources/key_management_service_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/../resources/key_management_service_descriptor_config.php',
-            'gcpApiConfigPath' => __DIR__ . '/../resources/key_management_service_grpc_config.json',
+            'apiEndpoint' =>
+                self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'clientConfig' =>
+                __DIR__ .
+                '/../resources/key_management_service_client_config.json',
+            'descriptorsConfigPath' =>
+                __DIR__ .
+                '/../resources/key_management_service_descriptor_config.php',
+            'gcpApiConfigPath' =>
+                __DIR__ .
+                '/../resources/key_management_service_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/key_management_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ .
+                        '/../resources/key_management_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -182,7 +191,9 @@ class KeyManagementServiceGapicClient
     private static function getCryptoKeyNameTemplate()
     {
         if (self::$cryptoKeyNameTemplate == null) {
-            self::$cryptoKeyNameTemplate = new PathTemplate('projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}');
+            self::$cryptoKeyNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}'
+            );
         }
 
         return self::$cryptoKeyNameTemplate;
@@ -191,7 +202,9 @@ class KeyManagementServiceGapicClient
     private static function getCryptoKeyVersionNameTemplate()
     {
         if (self::$cryptoKeyVersionNameTemplate == null) {
-            self::$cryptoKeyVersionNameTemplate = new PathTemplate('projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}');
+            self::$cryptoKeyVersionNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}'
+            );
         }
 
         return self::$cryptoKeyVersionNameTemplate;
@@ -200,7 +213,9 @@ class KeyManagementServiceGapicClient
     private static function getImportJobNameTemplate()
     {
         if (self::$importJobNameTemplate == null) {
-            self::$importJobNameTemplate = new PathTemplate('projects/{project}/locations/{location}/keyRings/{key_ring}/importJobs/{import_job}');
+            self::$importJobNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/keyRings/{key_ring}/importJobs/{import_job}'
+            );
         }
 
         return self::$importJobNameTemplate;
@@ -209,7 +224,9 @@ class KeyManagementServiceGapicClient
     private static function getKeyRingNameTemplate()
     {
         if (self::$keyRingNameTemplate == null) {
-            self::$keyRingNameTemplate = new PathTemplate('projects/{project}/locations/{location}/keyRings/{key_ring}');
+            self::$keyRingNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/keyRings/{key_ring}'
+            );
         }
 
         return self::$keyRingNameTemplate;
@@ -218,7 +235,9 @@ class KeyManagementServiceGapicClient
     private static function getLocationNameTemplate()
     {
         if (self::$locationNameTemplate == null) {
-            self::$locationNameTemplate = new PathTemplate('projects/{project}/locations/{location}');
+            self::$locationNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}'
+            );
         }
 
         return self::$locationNameTemplate;
@@ -250,8 +269,12 @@ class KeyManagementServiceGapicClient
      *
      * @return string The formatted crypto_key resource.
      */
-    public static function cryptoKeyName($project, $location, $keyRing, $cryptoKey)
-    {
+    public static function cryptoKeyName(
+        $project,
+        $location,
+        $keyRing,
+        $cryptoKey
+    ) {
         return self::getCryptoKeyNameTemplate()->render([
             'project' => $project,
             'location' => $location,
@@ -272,8 +295,13 @@ class KeyManagementServiceGapicClient
      *
      * @return string The formatted crypto_key_version resource.
      */
-    public static function cryptoKeyVersionName($project, $location, $keyRing, $cryptoKey, $cryptoKeyVersion)
-    {
+    public static function cryptoKeyVersionName(
+        $project,
+        $location,
+        $keyRing,
+        $cryptoKey,
+        $cryptoKeyVersion
+    ) {
         return self::getCryptoKeyVersionNameTemplate()->render([
             'project' => $project,
             'location' => $location,
@@ -294,8 +322,12 @@ class KeyManagementServiceGapicClient
      *
      * @return string The formatted import_job resource.
      */
-    public static function importJobName($project, $location, $keyRing, $importJob)
-    {
+    public static function importJobName(
+        $project,
+        $location,
+        $keyRing,
+        $importJob
+    ) {
         return self::getImportJobNameTemplate()->render([
             'project' => $project,
             'location' => $location,
@@ -368,7 +400,9 @@ class KeyManagementServiceGapicClient
         $templateMap = self::getPathTemplateMap();
         if ($template) {
             if (!isset($templateMap[$template])) {
-                throw new ValidationException("Template name $template does not exist");
+                throw new ValidationException(
+                    "Template name $template does not exist"
+                );
             }
 
             return $templateMap[$template]->match($formattedName);
@@ -382,7 +416,9 @@ class KeyManagementServiceGapicClient
             }
         }
 
-        throw new ValidationException("Input did not match any known format. Input: $formattedName");
+        throw new ValidationException(
+            "Input did not match any known format. Input: $formattedName"
+        );
     }
 
     /**
@@ -496,8 +532,11 @@ class KeyManagementServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function asymmetricDecrypt($name, $ciphertext, array $optionalArgs = [])
-    {
+    public function asymmetricDecrypt(
+        $name,
+        $ciphertext,
+        array $optionalArgs = []
+    ) {
         $request = new AsymmetricDecryptRequest();
         $requestParamHeaders = [];
         $request->setName($name);
@@ -507,9 +546,18 @@ class KeyManagementServiceGapicClient
             $request->setCiphertextCrc32c($optionalArgs['ciphertextCrc32c']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('AsymmetricDecrypt', AsymmetricDecryptResponse::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'AsymmetricDecrypt',
+            AsymmetricDecryptResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -574,9 +622,18 @@ class KeyManagementServiceGapicClient
             $request->setDigestCrc32c($optionalArgs['digestCrc32c']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('AsymmetricSign', AsymmetricSignResponse::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'AsymmetricSign',
+            AsymmetricSignResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -624,8 +681,12 @@ class KeyManagementServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createCryptoKey($parent, $cryptoKeyId, $cryptoKey, array $optionalArgs = [])
-    {
+    public function createCryptoKey(
+        $parent,
+        $cryptoKeyId,
+        $cryptoKey,
+        array $optionalArgs = []
+    ) {
         $request = new CreateCryptoKeyRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
@@ -633,12 +694,23 @@ class KeyManagementServiceGapicClient
         $request->setCryptoKey($cryptoKey);
         $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['skipInitialVersionCreation'])) {
-            $request->setSkipInitialVersionCreation($optionalArgs['skipInitialVersionCreation']);
+            $request->setSkipInitialVersionCreation(
+                $optionalArgs['skipInitialVersionCreation']
+            );
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('CreateCryptoKey', CryptoKey::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CreateCryptoKey',
+            CryptoKey::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -677,16 +749,28 @@ class KeyManagementServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createCryptoKeyVersion($parent, $cryptoKeyVersion, array $optionalArgs = [])
-    {
+    public function createCryptoKeyVersion(
+        $parent,
+        $cryptoKeyVersion,
+        array $optionalArgs = []
+    ) {
         $request = new CreateCryptoKeyVersionRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
         $request->setCryptoKeyVersion($cryptoKeyVersion);
         $requestParamHeaders['parent'] = $parent;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('CreateCryptoKeyVersion', CryptoKeyVersion::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CreateCryptoKeyVersion',
+            CryptoKeyVersion::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -726,17 +810,30 @@ class KeyManagementServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createImportJob($parent, $importJobId, $importJob, array $optionalArgs = [])
-    {
+    public function createImportJob(
+        $parent,
+        $importJobId,
+        $importJob,
+        array $optionalArgs = []
+    ) {
         $request = new CreateImportJobRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
         $request->setImportJobId($importJobId);
         $request->setImportJob($importJob);
         $requestParamHeaders['parent'] = $parent;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('CreateImportJob', ImportJob::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CreateImportJob',
+            ImportJob::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -774,17 +871,30 @@ class KeyManagementServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createKeyRing($parent, $keyRingId, $keyRing, array $optionalArgs = [])
-    {
+    public function createKeyRing(
+        $parent,
+        $keyRingId,
+        $keyRing,
+        array $optionalArgs = []
+    ) {
         $request = new CreateKeyRingRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
         $request->setKeyRingId($keyRingId);
         $request->setKeyRing($keyRing);
         $requestParamHeaders['parent'] = $parent;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('CreateKeyRing', KeyRing::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CreateKeyRing',
+            KeyRing::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -865,7 +975,9 @@ class KeyManagementServiceGapicClient
         $request->setCiphertext($ciphertext);
         $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['additionalAuthenticatedData'])) {
-            $request->setAdditionalAuthenticatedData($optionalArgs['additionalAuthenticatedData']);
+            $request->setAdditionalAuthenticatedData(
+                $optionalArgs['additionalAuthenticatedData']
+            );
         }
 
         if (isset($optionalArgs['ciphertextCrc32c'])) {
@@ -873,12 +985,23 @@ class KeyManagementServiceGapicClient
         }
 
         if (isset($optionalArgs['additionalAuthenticatedDataCrc32c'])) {
-            $request->setAdditionalAuthenticatedDataCrc32c($optionalArgs['additionalAuthenticatedDataCrc32c']);
+            $request->setAdditionalAuthenticatedDataCrc32c(
+                $optionalArgs['additionalAuthenticatedDataCrc32c']
+            );
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('Decrypt', DecryptResponse::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'Decrypt',
+            DecryptResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -927,9 +1050,18 @@ class KeyManagementServiceGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('DestroyCryptoKeyVersion', CryptoKeyVersion::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'DestroyCryptoKeyVersion',
+            CryptoKeyVersion::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1027,7 +1159,9 @@ class KeyManagementServiceGapicClient
         $request->setPlaintext($plaintext);
         $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['additionalAuthenticatedData'])) {
-            $request->setAdditionalAuthenticatedData($optionalArgs['additionalAuthenticatedData']);
+            $request->setAdditionalAuthenticatedData(
+                $optionalArgs['additionalAuthenticatedData']
+            );
         }
 
         if (isset($optionalArgs['plaintextCrc32c'])) {
@@ -1035,12 +1169,23 @@ class KeyManagementServiceGapicClient
         }
 
         if (isset($optionalArgs['additionalAuthenticatedDataCrc32c'])) {
-            $request->setAdditionalAuthenticatedDataCrc32c($optionalArgs['additionalAuthenticatedDataCrc32c']);
+            $request->setAdditionalAuthenticatedDataCrc32c(
+                $optionalArgs['additionalAuthenticatedDataCrc32c']
+            );
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('Encrypt', EncryptResponse::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'Encrypt',
+            EncryptResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1079,9 +1224,18 @@ class KeyManagementServiceGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetCryptoKey', CryptoKey::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetCryptoKey',
+            CryptoKey::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1119,9 +1273,18 @@ class KeyManagementServiceGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetCryptoKeyVersion', CryptoKeyVersion::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetCryptoKeyVersion',
+            CryptoKeyVersion::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1159,9 +1322,18 @@ class KeyManagementServiceGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetImportJob', ImportJob::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetImportJob',
+            ImportJob::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1199,9 +1371,18 @@ class KeyManagementServiceGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetKeyRing', KeyRing::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetKeyRing',
+            KeyRing::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1243,9 +1424,18 @@ class KeyManagementServiceGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetPublicKey', PublicKey::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetPublicKey',
+            PublicKey::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1315,8 +1505,12 @@ class KeyManagementServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function importCryptoKeyVersion($parent, $algorithm, $importJob, array $optionalArgs = [])
-    {
+    public function importCryptoKeyVersion(
+        $parent,
+        $algorithm,
+        $importJob,
+        array $optionalArgs = []
+    ) {
         $request = new ImportCryptoKeyVersionRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
@@ -1327,9 +1521,18 @@ class KeyManagementServiceGapicClient
             $request->setRsaAesWrappedKey($optionalArgs['rsaAesWrappedKey']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('ImportCryptoKeyVersion', CryptoKeyVersion::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'ImportCryptoKeyVersion',
+            CryptoKeyVersion::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1422,9 +1625,18 @@ class KeyManagementServiceGapicClient
             $request->setOrderBy($optionalArgs['orderBy']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->getPagedListResponse('ListCryptoKeyVersions', $optionalArgs, ListCryptoKeyVersionsResponse::class, $request);
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListCryptoKeyVersions',
+            $optionalArgs,
+            ListCryptoKeyVersionsResponse::class,
+            $request
+        );
     }
 
     /**
@@ -1517,9 +1729,18 @@ class KeyManagementServiceGapicClient
             $request->setOrderBy($optionalArgs['orderBy']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->getPagedListResponse('ListCryptoKeys', $optionalArgs, ListCryptoKeysResponse::class, $request);
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListCryptoKeys',
+            $optionalArgs,
+            ListCryptoKeysResponse::class,
+            $request
+        );
     }
 
     /**
@@ -1605,9 +1826,18 @@ class KeyManagementServiceGapicClient
             $request->setOrderBy($optionalArgs['orderBy']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->getPagedListResponse('ListImportJobs', $optionalArgs, ListImportJobsResponse::class, $request);
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListImportJobs',
+            $optionalArgs,
+            ListImportJobsResponse::class,
+            $request
+        );
     }
 
     /**
@@ -1693,9 +1923,18 @@ class KeyManagementServiceGapicClient
             $request->setOrderBy($optionalArgs['orderBy']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->getPagedListResponse('ListKeyRings', $optionalArgs, ListKeyRingsResponse::class, $request);
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListKeyRings',
+            $optionalArgs,
+            ListKeyRingsResponse::class,
+            $request
+        );
     }
 
     /**
@@ -1739,9 +1978,18 @@ class KeyManagementServiceGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('RestoreCryptoKeyVersion', CryptoKeyVersion::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'RestoreCryptoKeyVersion',
+            CryptoKeyVersion::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1775,16 +2023,28 @@ class KeyManagementServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateCryptoKey($cryptoKey, $updateMask, array $optionalArgs = [])
-    {
+    public function updateCryptoKey(
+        $cryptoKey,
+        $updateMask,
+        array $optionalArgs = []
+    ) {
         $request = new UpdateCryptoKeyRequest();
         $requestParamHeaders = [];
         $request->setCryptoKey($cryptoKey);
         $request->setUpdateMask($updateMask);
         $requestParamHeaders['crypto_key.name'] = $cryptoKey->getName();
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('UpdateCryptoKey', CryptoKey::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'UpdateCryptoKey',
+            CryptoKey::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1820,16 +2080,28 @@ class KeyManagementServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateCryptoKeyPrimaryVersion($name, $cryptoKeyVersionId, array $optionalArgs = [])
-    {
+    public function updateCryptoKeyPrimaryVersion(
+        $name,
+        $cryptoKeyVersionId,
+        array $optionalArgs = []
+    ) {
         $request = new UpdateCryptoKeyPrimaryVersionRequest();
         $requestParamHeaders = [];
         $request->setName($name);
         $request->setCryptoKeyVersionId($cryptoKeyVersionId);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('UpdateCryptoKeyPrimaryVersion', CryptoKey::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'UpdateCryptoKeyPrimaryVersion',
+            CryptoKey::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1869,16 +2141,30 @@ class KeyManagementServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateCryptoKeyVersion($cryptoKeyVersion, $updateMask, array $optionalArgs = [])
-    {
+    public function updateCryptoKeyVersion(
+        $cryptoKeyVersion,
+        $updateMask,
+        array $optionalArgs = []
+    ) {
         $request = new UpdateCryptoKeyVersionRequest();
         $requestParamHeaders = [];
         $request->setCryptoKeyVersion($cryptoKeyVersion);
         $request->setUpdateMask($updateMask);
-        $requestParamHeaders['crypto_key_version.name'] = $cryptoKeyVersion->getName();
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('UpdateCryptoKeyVersion', CryptoKeyVersion::class, $optionalArgs, $request)->wait();
+        $requestParamHeaders[
+            'crypto_key_version.name'
+        ] = $cryptoKeyVersion->getName();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'UpdateCryptoKeyVersion',
+            CryptoKeyVersion::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1925,9 +2211,20 @@ class KeyManagementServiceGapicClient
             $request->setOptions($optionalArgs['options']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetIamPolicy', Policy::class, $optionalArgs, $request, Call::UNARY_CALL, 'google.iam.v1.IAMPolicy')->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetIamPolicy',
+            Policy::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.iam.v1.IAMPolicy'
+        )->wait();
     }
 
     /**
@@ -1976,9 +2273,20 @@ class KeyManagementServiceGapicClient
         $request->setResource($resource);
         $request->setPolicy($policy);
         $requestParamHeaders['resource'] = $resource;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('SetIamPolicy', Policy::class, $optionalArgs, $request, Call::UNARY_CALL, 'google.iam.v1.IAMPolicy')->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'SetIamPolicy',
+            Policy::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.iam.v1.IAMPolicy'
+        )->wait();
     }
 
     /**
@@ -2022,15 +2330,29 @@ class KeyManagementServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
-    {
+    public function testIamPermissions(
+        $resource,
+        $permissions,
+        array $optionalArgs = []
+    ) {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
         $request->setResource($resource);
         $request->setPermissions($permissions);
         $requestParamHeaders['resource'] = $resource;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('TestIamPermissions', TestIamPermissionsResponse::class, $optionalArgs, $request, Call::UNARY_CALL, 'google.iam.v1.IAMPolicy')->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'TestIamPermissions',
+            TestIamPermissionsResponse::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.iam.v1.IAMPolicy'
+        )->wait();
     }
 }
