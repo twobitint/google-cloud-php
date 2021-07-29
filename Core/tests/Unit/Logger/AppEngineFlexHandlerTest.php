@@ -24,6 +24,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @group core
  * @group logger
+ * @runTestsInSeparateProcesses
  */
 class AppEngineFlexHandlerTest extends TestCase
 {
