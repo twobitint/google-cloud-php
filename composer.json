@@ -1,5 +1,5 @@
 {
-    "name": "google/cloud",
+    "name": "twobitint/cloud",
     "type": "library",
     "description": "Google Cloud Client Library",
     "keywords": [
